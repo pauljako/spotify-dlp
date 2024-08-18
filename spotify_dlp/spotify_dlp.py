@@ -1,4 +1,4 @@
-import os, sys, argparse, re
+import os, sys, argparse, re, music_tag
 from yt_dlp import YoutubeDL
 from .spotify_api import spotify_api
 
@@ -132,7 +132,9 @@ def main():
 				if ARGS["verbose"]:
 					print(f"[spotify-dlp] Fetching first track found in search query \"{track['query']}\"...")
 				ytdlp.extract_info(f"https://music.youtube.com/search?q={track['query']}")
-
+			tagfile = music_tag.load_file(os.path.join(ARGS["output"], filename + ".%(ext)s"))
+			tagfile['album'] = track['album']
+			tagfile.save()
 			print(f"[spotify-dlp] Successfully downloaded \"{format_track(track, ARGS['format'])}\"! ({index}/{len(tracklist)})")
 
 	except KeyboardInterrupt:
