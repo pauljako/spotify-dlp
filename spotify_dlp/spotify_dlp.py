@@ -137,6 +137,7 @@ def main():
 			tagfile['title'] = track['name']
 			tagfile['artist'] = track['authors']
 			tagfile.save()
+			print(track['albumimage']['url'])
 			print(f"[spotify-dlp] Successfully downloaded \"{format_track(track, ARGS['format'])}\"! ({index}/{len(tracklist)})")
 
 	except KeyboardInterrupt:
