@@ -132,8 +132,10 @@ def main():
 				if ARGS["verbose"]:
 					print(f"[spotify-dlp] Fetching first track found in search query \"{track['query']}\"...")
 				ytdlp.extract_info(f"https://music.youtube.com/search?q={track['query']}")
-			tagfile = music_tag.load_file(os.path.join(ARGS["output"], filename + ".%(ext)s"))
+			tagfile = music_tag.load_file(os.path.join(ARGS["output"], filename + '.' + ARGS['codec']))
 			tagfile['album'] = track['album']
+			tagfile['title'] = track['name']
+			tagfile['artist'] = track['authors']
 			tagfile.save()
 			print(f"[spotify-dlp] Successfully downloaded \"{format_track(track, ARGS['format'])}\"! ({index}/{len(tracklist)})")
 
