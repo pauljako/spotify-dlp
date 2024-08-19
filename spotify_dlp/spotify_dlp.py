@@ -136,7 +136,8 @@ def main():
 			tagfile['album'] = track['album']
 			tagfile['title'] = track['name']
 			tagfile['artist'] = track['authors']
-			tagfile['artwork'] = requests.get(track['albumimage']['url']).content
+			tagfile['artwork'] = requests.get(track['album_image']['url']).content
+			tagfile['year'] = track['album_release'].split('-')[0]
 			tagfile.save()
 			print(f"[spotify-dlp] Successfully downloaded \"{format_track(track, ARGS['format'])}\"! ({index}/{len(tracklist)})")
 
