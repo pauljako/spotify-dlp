@@ -31,7 +31,8 @@ class spotify_api:
             "name": item["name"],
             "authors": [artist["name"] for artist in item["artists"]],
             "album": album_name if album_name else item["album"]["name"],
-            "albumimage": item["album"]["images"][0],
+            "album_image": item["album"]["images"][0],
+            "album_release": item["album"]["release_date"],
             "explicit": item["explicit"],
             "url": item["external_urls"]["spotify"]
          }
