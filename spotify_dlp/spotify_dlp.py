@@ -1,4 +1,4 @@
-import os, sys, argparse, re, music_tag
+import os, sys, argparse, re, music_tag, requests
 from yt_dlp import YoutubeDL
 from .spotify_api import spotify_api
 
@@ -136,8 +136,8 @@ def main():
 			tagfile['album'] = track['album']
 			tagfile['title'] = track['name']
 			tagfile['artist'] = track['authors']
+			tagfile['artwork'] = requests.get(track['albumimage']['url']).content
 			tagfile.save()
-			print(track['albumimage']['url'])
 			print(f"[spotify-dlp] Successfully downloaded \"{format_track(track, ARGS['format'])}\"! ({index}/{len(tracklist)})")
 
 	except KeyboardInterrupt:
