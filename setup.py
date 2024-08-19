@@ -11,7 +11,8 @@ setup(
 	packages=find_packages(),
 	install_requires=[
 		"yt_dlp>=2024.4.9",
-		"music-tag==0.4.3"
+		"music-tag==0.4.3",
+		"pillow==10.4.0"
 	],
 	entry_points={
 		"console_scripts": [
