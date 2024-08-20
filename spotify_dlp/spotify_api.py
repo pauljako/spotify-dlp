@@ -26,6 +26,7 @@ class spotify_api:
 
    def get_tracks_info(self, url):
       def get_item_info(item, album_name=None):
+         print(item["album"])
          info = {
             "id": item["id"],
             "name": item["name"],
@@ -33,6 +34,7 @@ class spotify_api:
             "album": album_name if album_name else item["album"]["name"],
             "album_image": item["album"]["images"][0],
             "album_release": item["album"]["release_date"],
+            "album_raw": item["album"],
             "explicit": item["explicit"],
             "url": item["external_urls"]["spotify"]
          }
